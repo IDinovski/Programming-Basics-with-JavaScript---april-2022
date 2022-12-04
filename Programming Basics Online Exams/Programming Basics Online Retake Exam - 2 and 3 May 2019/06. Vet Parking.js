@@ -22,3 +22,4 @@ function solve(input) {
   console.log(`Total: ${total.toFixed(2)} leva`);
 }
 solve([5, 2]);
+solve([2, 5]);
