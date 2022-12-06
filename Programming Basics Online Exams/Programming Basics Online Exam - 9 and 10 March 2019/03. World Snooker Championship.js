@@ -7,7 +7,7 @@ function solve(input) {
   let price = 0;
   if (typeTicket == "Standard") {
     switch (etap) {
-      case "Quarter":
+      case "Quarter final":
         price = 55.5;
         break;
       case "Semi final":
@@ -19,7 +19,7 @@ function solve(input) {
     }
   } else if (typeTicket == "Premium") {
     switch (etap) {
-      case "Quarter":
+      case "Quarter final":
         price = 105.2;
         break;
       case "Semi final":
@@ -31,7 +31,7 @@ function solve(input) {
     }
   } else if (typeTicket == "VIP") {
     switch (etap) {
-      case "Quarter":
+      case "Quarter final":
         price = 118.9;
         break;
       case "Semi final":
@@ -42,17 +42,16 @@ function solve(input) {
         break;
     }
   }
-  price = price * amountTickets;
-  if (price < 4000 && withPhoto == "Y") {
-    price += amountTickets * 40;
-  } else if (price >= 4000) {
-    price = 0.75 * price;
-  } else if (price > 2500 && price < 4000 && withPhoto == "Y") {
-    price = 0.9 * price + amountTickets * 40;
-  } else if (price > 2500 && price < 4000 && withPhoto == "N") {
-    price = 0.9 * price;
+  total = price * amountTickets;
+  if (total > 2500 && total <= 4000) {
+    total = 0.9 * total;
+  } else if (total > 4000) {
+    total = 0.75 * total;
+  }
+  if (withPhoto == "Y" && price * amountTickets <= 4000) {
+    total += amountTickets * 40;
   }
 
-  console.log(price.toFixed(2));
+  console.log(total.toFixed(2));
 }
-solve(["Final", "Premium", "25", "Y"]);
+solve(["Quarter final", "Standard", "11", "N"]);
